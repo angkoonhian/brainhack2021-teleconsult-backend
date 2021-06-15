@@ -37,20 +37,22 @@ export class AppointmentService {
                 content: appointment.content,
                 readStatus: false,
                 status: 'Upcoming',
-                patientRemove: false,
-                clinicRemove: false
+                patientRemoved: false,
+                clinicRemoved: false
             }
             Appointment.create(newAppointment).then(async res => {
                 console.log("created")
                 console.log(res);
                 // Update patient appointments
                 const patient = await User.findOne({_id: appointment.patientId})
+                console.log(patient)
                 patient.appointments.push(res._id)
                 await patient.save();
                 // Update clinic appointments
                 const clinic = await Clinic.findOne({_id: appointment.clinicId})
+                console.log(clinic)
                 clinic.appointments.push(res._id)
-                await patient.save();
+                await clinic.save();
             //const clinic = await User.findOne({_id: appointment.clinicId})
             })
             return newAppointment
@@ -83,16 +85,16 @@ export class AppointmentService {
     public async deleteClinicAppointment(appointmentId) {
         try {
             const deletedAppt = await Appointment.findOne({_id: appointmentId});
-            // Check if clinic delete appt already
+            // Check if patient delete appt already
             if (deletedAppt.patientRemove === true) {
                 // Delete appointment
                 await Appointment.deleteOne({_id: appointmentId});
             } else {
                 await Appointment.updateOne({_id: appointmentId}, {clinicRemove: true})
             }
-            // Delete appt from patient
-            await User.updateOne(
-                { _id: deletedAppt.patientId.toString() },
+            // Delete appt from clinic
+            await Clinic.updateOne(
+                { _id: deletedAppt.clinicId.toString() },
                 { $pullAll: { appointments: [appointmentId]}}
             )
             return deletedAppt

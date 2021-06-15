@@ -10,8 +10,8 @@ export declare class AppointmentService {
         content: any;
         readStatus: boolean;
         status: string;
-        patientRemove: boolean;
-        clinicRemove: boolean;
+        patientRemoved: boolean;
+        clinicRemoved: boolean;
     }>;
     deletePatientAppointment(appointmentId: any): Promise<import("../schemas/appointment.schema").Iappointment>;
     deleteClinicAppointment(appointmentId: any): Promise<import("../schemas/appointment.schema").Iappointment>;

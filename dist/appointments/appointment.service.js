@@ -44,18 +44,20 @@ let AppointmentService = class AppointmentService {
                 content: appointment.content,
                 readStatus: false,
                 status: 'Upcoming',
-                patientRemove: false,
-                clinicRemove: false
+                patientRemoved: false,
+                clinicRemoved: false
             };
             appointment_schema_1.default.create(newAppointment).then(async (res) => {
                 console.log("created");
                 console.log(res);
                 const patient = await user_schema_1.default.findOne({ _id: appointment.patientId });
+                console.log(patient);
                 patient.appointments.push(res._id);
                 await patient.save();
                 const clinic = await clinic_schema_1.default.findOne({ _id: appointment.clinicId });
+                console.log(clinic);
                 clinic.appointments.push(res._id);
-                await patient.save();
+                await clinic.save();
             });
             return newAppointment;
         }
@@ -88,7 +90,7 @@ let AppointmentService = class AppointmentService {
             else {
                 await appointment_schema_1.default.updateOne({ _id: appointmentId }, { clinicRemove: true });
             }
-            await user_schema_1.default.updateOne({ _id: deletedAppt.patientId.toString() }, { $pullAll: { appointments: [appointmentId] } });
+            await clinic_schema_1.default.updateOne({ _id: deletedAppt.clinicId.toString() }, { $pullAll: { appointments: [appointmentId] } });
             return deletedAppt;
         }
         catch (err) {

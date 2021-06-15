@@ -18,10 +18,9 @@ export class authService {
     if (!loginUser) {
       throw new Error('User does not exist');
     }
-    const isEqual = this.checkPassword(
-      password,
-      loginUser.password,
-    );
+    console.log(loginUser.password)
+    console.log(password)
+    const isEqual = await bcrypt.compare(password, loginUser.password)
     if (!isEqual) {
       throw new Error('Password is incorrect');
     }
@@ -73,7 +72,7 @@ export class authService {
   }
 
   private async checkPassword(inputPassword: string, originalPassword: string) {
-    await bcrypt.compare(inputPassword, originalPassword);
+    return await bcrypt.compare(inputPassword, originalPassword);
   }
 }
 

@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import * as Joi from 'joi';
 import { AppointmentModule } from './appointments/appointment.module';
+import { ClinicModule } from './clinic/clinic.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { AppointmentModule } from './appointments/appointment.module';
       }),
     }),
     UserModule,
-    AppointmentModule
+    AppointmentModule,
+    ClinicModule,
   ],
   controllers: [AppController],
   providers: [AppService],

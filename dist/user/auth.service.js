@@ -25,7 +25,9 @@ let authService = class authService {
         if (!loginUser) {
             throw new Error('User does not exist');
         }
-        const isEqual = this.checkPassword(password, loginUser.password);
+        console.log(loginUser.password);
+        console.log(password);
+        const isEqual = await bcrypt.compare(password, loginUser.password);
         if (!isEqual) {
             throw new Error('Password is incorrect');
         }
@@ -66,7 +68,7 @@ let authService = class authService {
         return hashedPassword;
     }
     async checkPassword(inputPassword, originalPassword) {
-        await bcrypt.compare(inputPassword, originalPassword);
+        return await bcrypt.compare(inputPassword, originalPassword);
     }
 };
 authService = __decorate([
