@@ -5,6 +5,7 @@ export interface Iuser extends mongoose.Document {
     password: string;
     email: string;
     phoneNumber: string;
+    appointments: [string];
 }
 export declare const UserSchema: mongoose.Schema<mongoose.Document<any, any>, mongoose.Model<any, any, any>, undefined>;
 declare const User: mongoose.Model<Iuser, {}, {}>;

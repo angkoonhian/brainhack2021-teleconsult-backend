@@ -20,11 +20,12 @@ import { userLoginDTO, userDTO } from './model/user.model';
 export class userController {
   constructor(private readonly AuthService: authService) {}
 
-  @Get('login')
+  @Get('login/:username/:password')
   login(
-    @Param('userLoginDTO') username: string,
+    @Param('username') username: string,
     @Param('password') password: string,
   ) {
+    console.log(username)
     return this.AuthService.loginService(username, password);
   }
 

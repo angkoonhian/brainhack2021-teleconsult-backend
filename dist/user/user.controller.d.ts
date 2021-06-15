@@ -4,8 +4,8 @@ export declare class userController {
     private readonly AuthService;
     constructor(AuthService: authService);
     login(username: string, password: string): Promise<{
-        userId: any;
-        token: void;
+        userId: string;
+        token: any;
         tokenExpiration: string;
     }>;
     Register(userDTO: userDTO): Promise<{

@@ -6,6 +6,7 @@ export interface Iuser extends mongoose.Document {
     password: string;
     email: string;
     phoneNumber: string;
+    appointments: [string];
 }
 
 const Schema = mongoose.Schema

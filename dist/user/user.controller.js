@@ -22,6 +22,7 @@ let userController = class userController {
         this.AuthService = AuthService;
     }
     login(username, password) {
+        console.log(username);
         return this.AuthService.loginService(username, password);
     }
     Register(userDTO) {
@@ -29,8 +30,8 @@ let userController = class userController {
     }
 };
 __decorate([
-    common_1.Get('login'),
-    __param(0, common_1.Param('userLoginDTO')),
+    common_1.Get('login/:username/:password'),
+    __param(0, common_1.Param('username')),
     __param(1, common_1.Param('password')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),

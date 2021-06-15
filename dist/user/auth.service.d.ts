@@ -1,11 +1,8 @@
-import { Model } from 'mongoose';
-import User from '../schemas/user.schema';
 export declare class authService {
-    private userModel;
-    constructor(userModel: Model<typeof User>);
+    constructor();
     loginService(username: any, password: any): Promise<{
-        userId: any;
-        token: void;
+        userId: string;
+        token: any;
         tokenExpiration: string;
     }>;
     registerService(userDTO: any): Promise<{

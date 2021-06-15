@@ -12,8 +12,12 @@ exports.AppointmentSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'clinics'
     },
-    dateTime: {
-        type: Date,
+    date: {
+        type: String,
+        required: true,
+    },
+    time: {
+        type: String,
         required: true,
     },
     content: {
@@ -25,7 +29,7 @@ exports.AppointmentSchema = new mongoose.Schema({
         required: true,
     },
     status: {
-        tyoe: String,
+        type: String,
         required: true,
     }
 });

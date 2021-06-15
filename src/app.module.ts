@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import * as Joi from 'joi';
+import { AppointmentModule } from './appointments/appointment.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import * as Joi from 'joi';
       }),
     }),
     UserModule,
+    AppointmentModule
   ],
   controllers: [AppController],
   providers: [AppService],

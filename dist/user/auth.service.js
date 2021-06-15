@@ -8,40 +8,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authService = void 0;
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("mongoose");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const user_schema_1 = require("../schemas/user.schema");
 let authService = class authService {
-    constructor(userModel) {
-        this.userModel = userModel;
-    }
+    constructor() { }
     async loginService(username, password) {
-        const loginUser = await this.userModel.findOne({
+        console.log(username);
+        const loginUser = await user_schema_1.default.findOne({
             username: username,
         });
+        console.log(username);
         if (!loginUser) {
             throw new Error('User does not exist');
         }
-        const isEqual = this.checkPassword(password, password);
+        const isEqual = this.checkPassword(password, loginUser.password);
         if (!isEqual) {
             throw new Error('Password is incorrect');
         }
         const token = this.getSignedJwtToken(loginUser);
+        console.log(token);
         return {
             userId: loginUser._id,
             token: token,
-            tokenExpiration: process.env.JWT_EXPIRE,
+            tokenExpiration: "30d",
         };
     }
     async registerService(userDTO) {
         console.log(userDTO);
-        const registerUser = await this.userModel.findOne({
+        const registerUser = await user_schema_1.default.findOne({
             username: userDTO.username,
         });
         if (registerUser) {
@@ -54,12 +52,12 @@ let authService = class authService {
             email: userDTO.email,
             phoneNumber: userDTO.phoneNumber
         };
-        this.userModel.create(newUser);
+        user_schema_1.default.create(newUser);
         return newUser;
     }
     getSignedJwtToken(loginUser) {
-        jsonwebtoken_1.sign({ userId: loginUser._id, userEmail: loginUser.email }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRE,
+        return jsonwebtoken_1.sign({ userId: loginUser._id, userEmail: loginUser.email }, "brainhack", {
+            expiresIn: "30d",
         });
     }
     async hashPassword(password) {
@@ -73,8 +71,7 @@ let authService = class authService {
 };
 authService = __decorate([
     common_1.Injectable(),
-    __param(0, common_1.Inject('USER_MODEL')),
-    __metadata("design:paramtypes", [mongoose_1.Model])
+    __metadata("design:paramtypes", [])
 ], authService);
 exports.authService = authService;
 exports.default = authService;

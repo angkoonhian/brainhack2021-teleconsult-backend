@@ -5,7 +5,8 @@ export interface Iappointment extends mongoose.Document {
     _id: string;
     patientId: string;
     clinicId: string;
-    dateTime: Date;
+    date: string;
+    time: string;
     content: string;
     readStatus: boolean;
     status: string;
@@ -22,8 +23,12 @@ export const AppointmentSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'clinics'
     },
-    dateTime: {
-        type: Date,
+    date: {
+        type: String,
+        required: true,
+    },
+    time: {
+        type: String,
         required: true,
     },
     content: {
@@ -35,7 +40,7 @@ export const AppointmentSchema = new mongoose.Schema({
         required: true,
     },
     status: {
-        tyoe: String,
+        type: String,
         required: true,
     }
 })

@@ -7,6 +7,8 @@ export interface Iclinic extends mongoose.Document {
     email: string;
     phoneNumber: string;
     address: string;
+    appointments: [string];
+    notifications: [string];
 }
 
 const Schema = mongoose.Schema

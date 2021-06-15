@@ -6,6 +6,8 @@ export interface Iclinic extends mongoose.Document {
     email: string;
     phoneNumber: string;
     address: string;
+    appointments: [string];
+    notifications: [string];
 }
 export declare const ClinicSchema: mongoose.Schema<mongoose.Document<any, any>, mongoose.Model<any, any, any>, undefined>;
 declare const Clinic: mongoose.Model<Iclinic, {}, {}>;

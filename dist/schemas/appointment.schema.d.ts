@@ -3,7 +3,8 @@ export interface Iappointment extends mongoose.Document {
     _id: string;
     patientId: string;
     clinicId: string;
-    dateTime: Date;
+    date: string;
+    time: string;
     content: string;
     readStatus: boolean;
     status: string;

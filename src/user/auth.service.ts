@@ -7,36 +7,36 @@ import { userLoginDTO } from './model/user.model';
 
 @Injectable()
 export class authService {
-  constructor(
-    @Inject('USER_MODEL')
-    private userModel: Model<typeof User>,
-  ) {}
+  constructor() {}
 
   public async loginService(username, password) {
-    const loginUser = await this.userModel.findOne({
+    console.log(username)
+    const loginUser = await User.findOne({
       username: username,
     });
+    console.log(username)
     if (!loginUser) {
       throw new Error('User does not exist');
     }
     const isEqual = this.checkPassword(
       password,
-      password,
+      loginUser.password,
     );
     if (!isEqual) {
       throw new Error('Password is incorrect');
     }
     const token = this.getSignedJwtToken(loginUser);
+    console.log(token)
     return {
       userId: loginUser._id,
       token: token,
-      tokenExpiration: process.env.JWT_EXPIRE,
+      tokenExpiration: "30d",
     };
   }
 
   public async registerService(userDTO) {
     console.log(userDTO)
-    const registerUser = await this.userModel.findOne({
+    const registerUser = await User.findOne({
       username: userDTO.username,
     })
     // Check if user already exists
@@ -52,16 +52,16 @@ export class authService {
       email: userDTO.email,
       phoneNumber: userDTO.phoneNumber
     }
-    this.userModel.create(newUser)
+    User.create(newUser)
     return newUser
   }
 
   private getSignedJwtToken(loginUser) {
-    sign(
+    return sign(
       { userId: loginUser._id, userEmail: loginUser.email },
-      process.env.JWT_SECRET,
+      "brainhack",
       {
-        expiresIn: process.env.JWT_EXPIRE,
+        expiresIn: "30d",
       },
     );
   }
