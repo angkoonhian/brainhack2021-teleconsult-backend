@@ -10,6 +10,8 @@ export interface Iappointment extends mongoose.Document {
     content: string;
     readStatus: boolean;
     status: string;
+    patientRemove: boolean;
+    clinicRemove: boolean;
 }
 
 const Schema = mongoose.Schema
@@ -40,6 +42,14 @@ export const AppointmentSchema = new mongoose.Schema({
         required: true,
     },
     status: {
+        type: String,
+        required: true,
+    },
+    patientRemoved: {
+        type: String,
+        required: true,
+    },
+    clinicRemoved: {
         type: String,
         required: true,
     }

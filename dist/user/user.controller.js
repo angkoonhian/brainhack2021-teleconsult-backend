@@ -22,7 +22,6 @@ let userController = class userController {
         this.AuthService = AuthService;
     }
     login(username, password) {
-        console.log(username);
         return this.AuthService.loginService(username, password);
     }
     Register(userDTO) {

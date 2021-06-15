@@ -22,7 +22,12 @@ let appointmentController = class appointmentController {
         this.appointmentService = appointmentService;
     }
     getPatientAppointments(patientId) {
+        console.log(patientId);
         return this.appointmentService.getUserAppointment(patientId);
+    }
+    getClinicAppointments(clinicId) {
+        console.log(clinicId);
+        return this.appointmentService.getClinicAppointment(clinicId);
     }
     createAppointments(newAppointmentDTO) {
         return this.appointmentService.createNewAppointment(newAppointmentDTO);
@@ -35,12 +40,19 @@ let appointmentController = class appointmentController {
     }
 };
 __decorate([
-    common_1.Get('getPatientAppointments'),
+    common_1.Get('getPatientAppointments/:patientId'),
     __param(0, common_1.Param('patientId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], appointmentController.prototype, "getPatientAppointments", null);
+__decorate([
+    common_1.Get('getClinicAppointments/:clinicId'),
+    __param(0, common_1.Param('clinicId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], appointmentController.prototype, "getClinicAppointments", null);
 __decorate([
     common_1.Post('createAppointments'),
     __param(0, common_1.Body()),

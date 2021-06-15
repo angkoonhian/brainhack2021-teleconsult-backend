@@ -31,6 +31,14 @@ exports.AppointmentSchema = new mongoose.Schema({
     status: {
         type: String,
         required: true,
+    },
+    patientRemoved: {
+        type: String,
+        required: true,
+    },
+    clinicRemoved: {
+        type: String,
+        required: true,
     }
 });
 const Appointment = mongoose.model('appointments', exports.AppointmentSchema);

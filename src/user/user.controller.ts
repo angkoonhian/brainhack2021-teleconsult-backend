@@ -25,7 +25,6 @@ export class userController {
     @Param('username') username: string,
     @Param('password') password: string,
   ) {
-    console.log(username)
     return this.AuthService.loginService(username, password);
   }
 
@@ -33,7 +32,6 @@ export class userController {
   Register(
     @Body() userDTO: userDTO
   ) {
-
       return this.AuthService.registerService(userDTO)
   }
 }

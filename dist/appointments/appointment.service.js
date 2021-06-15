@@ -25,6 +25,15 @@ let AppointmentService = class AppointmentService {
             console.log(err);
         }
     }
+    async getClinicAppointment(clinicId) {
+        try {
+            const appointments = await appointment_schema_1.default.find({ clinicId: clinicId });
+            return appointments;
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
     async createNewAppointment(appointment) {
         try {
             const newAppointment = {
@@ -34,7 +43,9 @@ let AppointmentService = class AppointmentService {
                 time: appointment.time,
                 content: appointment.content,
                 readStatus: false,
-                status: 'Upcoming'
+                status: 'Upcoming',
+                patientRemove: false,
+                clinicRemove: false
             };
             appointment_schema_1.default.create(newAppointment).then(async (res) => {
                 console.log("created");
@@ -55,9 +66,13 @@ let AppointmentService = class AppointmentService {
     async deletePatientAppointment(appointmentId) {
         try {
             const deletedAppt = await appointment_schema_1.default.findOne({ _id: appointmentId });
-            await appointment_schema_1.default.deleteOne({ _id: appointmentId });
+            if (deletedAppt.clinicRemove === true) {
+                await appointment_schema_1.default.deleteOne({ _id: appointmentId });
+            }
+            else {
+                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { patientRemove: true });
+            }
             await user_schema_1.default.updateOne({ _id: deletedAppt.patientId.toString() }, { $pullAll: { appointments: [appointmentId] } });
-            await clinic_schema_1.default.updateOne({ _id: deletedAppt.clinicId.toString() }, { $pullAll: { appointments: [appointmentId] } });
             return deletedAppt;
         }
         catch (err) {
@@ -67,9 +82,13 @@ let AppointmentService = class AppointmentService {
     async deleteClinicAppointment(appointmentId) {
         try {
             const deletedAppt = await appointment_schema_1.default.findOne({ _id: appointmentId });
-            await appointment_schema_1.default.deleteOne({ _id: appointmentId });
+            if (deletedAppt.patientRemove === true) {
+                await appointment_schema_1.default.deleteOne({ _id: appointmentId });
+            }
+            else {
+                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { clinicRemove: true });
+            }
             await user_schema_1.default.updateOne({ _id: deletedAppt.patientId.toString() }, { $pullAll: { appointments: [appointmentId] } });
-            await clinic_schema_1.default.updateOne({ _id: deletedAppt.clinicId.toString() }, { $pullAll: { appointments: [appointmentId] } });
             return deletedAppt;
         }
         catch (err) {

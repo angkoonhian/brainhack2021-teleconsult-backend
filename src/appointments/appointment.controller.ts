@@ -21,12 +21,21 @@ import {
   export class appointmentController {
     constructor(private readonly appointmentService: AppointmentService) {}
   
-    @Get('getPatientAppointments')
+    @Get('getPatientAppointments/:patientId')
     getPatientAppointments(
       @Param('patientId') patientId: string
     ) {
+        console.log(patientId);
       return this.appointmentService.getUserAppointment(patientId);
     }
+
+    @Get('getClinicAppointments/:clinicId')
+    getClinicAppointments(
+        @Param('clinicId') clinicId: string
+      ) {
+          console.log(clinicId);
+        return this.appointmentService.getClinicAppointment(clinicId);
+      }
   
     @Post('createAppointments')
     createAppointments(
