@@ -8,3 +8,6 @@ export interface Iappointment extends mongoose.Document {
     readStatus: boolean;
     status: string;
 }
+export declare const AppointmentSchema: mongoose.Schema<mongoose.Document<any, any>, mongoose.Model<any, any, any>, undefined>;
+declare const Appointment: mongoose.Model<Iappointment, {}, {}>;
+export default Appointment;
