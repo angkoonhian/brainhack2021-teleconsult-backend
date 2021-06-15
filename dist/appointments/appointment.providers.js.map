@@ -1,1 +1,0 @@
-{"version":3,"file":"appointment.providers.js","sourceRoot":"","sources":["../../src/appointments/appointment.providers.ts"],"names":[],"mappings":";;;AACA,sEAAiE;AAEpD,QAAA,oBAAoB,GAAG;IAClC;QACE,OAAO,EAAE,mBAAmB;QAC5B,UAAU,EAAE,CAAC,UAAsB,EAAE,EAAE,CACrC,UAAU,CAAC,KAAK,CAAC,cAAc,EAAE,sCAAiB,CAAC;QACrD,MAAM,EAAE,CAAC,qBAAqB,CAAC;KAChC;CACF,CAAC"}
