@@ -77,7 +77,7 @@ let AppointmentService = class AppointmentService {
                 await appointment_schema_1.default.deleteOne({ _id: appointmentId });
             }
             else {
-                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { patientRemove: true, patientId: null });
+                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { patientRemoved: true, patientId: null });
             }
             if (deletedAppt.patientId === null) {
                 return;
@@ -98,7 +98,7 @@ let AppointmentService = class AppointmentService {
                 await appointment_schema_1.default.deleteOne({ _id: appointmentId });
             }
             else {
-                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { clinicRemove: true, clinicId: null });
+                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { clinicRemoved: true, clinicId: null });
             }
             if (deletedAppt.clinicId === null) {
                 return;
