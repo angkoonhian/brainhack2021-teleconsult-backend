@@ -15,7 +15,7 @@ export declare class AppointmentService {
         patientRemoved: boolean;
         clinicRemoved: boolean;
     }>;
-    deletePatientAppointment(appointmentId: any): Promise<import("../schemas/appointment.schema").Iappointment>;
+    deletePatientAppointment(appointmentIdz: any): Promise<import("../schemas/appointment.schema").Iappointment>;
     deleteClinicAppointment(appointmentId: any): Promise<import("../schemas/appointment.schema").Iappointment>;
 }
 export default AppointmentService;

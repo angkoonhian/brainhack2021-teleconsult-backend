@@ -4,6 +4,7 @@ import User from '../schemas/user.schema';
 import Appointment from '../schemas/appointment.schema';
 import Clinic from 'src/schemas/clinic.schema';
 import { truncateSync } from 'fs';
+import * as mongoose from 'mongoose';
 
 @Injectable()
 export class AppointmentService {
@@ -64,22 +65,29 @@ export class AppointmentService {
         }
     }
 
-    public async deletePatientAppointment(appointmentId) {
+    public async deletePatientAppointment(appointmentIdz) {
+        console.log(appointmentIdz.appointmentId)
+        const appointmentId = appointmentIdz.appointmentId.toString()
         try {
             const deletedAppt = await Appointment.findOne({_id: appointmentId});
+            console.log(deletedAppt)
             // Check if clinic delete appt already
             if (deletedAppt.clinicRemove === true) {
                 // Delete appointment
                 await Appointment.deleteOne({_id: appointmentId});
             } else {
-                await Appointment.updateOne({_id: appointmentId}, {patientRemove: true, patientId: ""})
+                await Appointment.updateOne({_id: appointmentId}, {patientRemove: true, patientId: null})
             }
-            // Delete appt from patient
-            await User.updateOne(
-                { _id: deletedAppt.patientId.toString() },
-                { $pullAll: { appointments: [appointmentId]}}
-            )
-            return deletedAppt
+            if (deletedAppt.patientId === null) {
+                return;
+            } else {
+                // Delete appt from patient
+                await User.updateOne(
+                    { _id: deletedAppt.patientId.toString() },
+                    { $pullAll: { appointments: [appointmentId]}}
+                )
+                return deletedAppt
+            }
         } catch (err) {
             throw err
         }
@@ -93,14 +101,18 @@ export class AppointmentService {
                 // Delete appointment
                 await Appointment.deleteOne({_id: appointmentId});
             } else {
-                await Appointment.updateOne({_id: appointmentId}, {clinicRemove: true, clinicId: ""})
+                await Appointment.updateOne({_id: appointmentId}, {clinicRemove: true, clinicId: null})
             }
-            // Delete appt from clinic
-            await Clinic.updateOne(
-                { _id: deletedAppt.clinicId.toString() },
-                { $pullAll: { appointments: [appointmentId]}}
-            )
-            return deletedAppt
+            if (deletedAppt.clinicId === null) {
+                return;
+            } else {
+                // Delete appt from clinic
+                await Clinic.updateOne(
+                    { _id: deletedAppt.clinicId.toString() },
+                    { $pullAll: { appointments: [appointmentId]}}
+                )
+                return deletedAppt
+            }
         } catch (err) {
             throw err
         }

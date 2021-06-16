@@ -18,6 +18,29 @@ let NotificationsService = class NotificationsService {
         this.expo = new expo_server_sdk_1.Expo({ accessToken: "asdasds" });
     }
     async pushNotifications(notificationsDTO) {
+        let messages = [];
+        if (!expo_server_sdk_1.Expo.isExpoPushToken(notificationsDTO.pushToken)) {
+            console.error(`Push token is not a valid Expo push token`);
+            return;
+        }
+        messages.push({
+            to: notificationsDTO.pushToken,
+            sound: 'default',
+            body: 'test notifications',
+            data: { withSome: 'data' }
+        });
+        let chunks = this.expo.chunkPushNotifications(messages);
+        let tickets = [];
+        for (let chunk of chunks) {
+            try {
+                let ticketChunk = await this.expo.sendPushNotificationsAsync(chunk);
+                console.log(ticketChunk);
+                tickets.push(...ticketChunk);
+            }
+            catch (err) {
+                throw err;
+            }
+        }
     }
 };
 NotificationsService = __decorate([
