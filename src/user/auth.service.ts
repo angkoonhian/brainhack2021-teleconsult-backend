@@ -44,6 +44,15 @@ export class authService {
     }
   }
 
+  public async getAllUsers() {
+    try {
+      const users = await User.find();
+      return users;
+    } catch (err) {
+      throw err
+    }
+  }
+
   public async getOneUserName(userId) {
     try {
       const user = await User.findOne({_id: userId})

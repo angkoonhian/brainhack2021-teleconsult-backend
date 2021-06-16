@@ -33,6 +33,9 @@ let userController = class userController {
     getOneUserName(userId) {
         return this.AuthService.getOneUserName(userId);
     }
+    getAllUsers() {
+        return this.AuthService.getAllUsers();
+    }
 };
 __decorate([
     common_1.Get('login/:username/:password'),
@@ -63,6 +66,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], userController.prototype, "getOneUserName", null);
+__decorate([
+    common_1.Get('getAllUsers'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], userController.prototype, "getAllUsers", null);
 userController = __decorate([
     swagger_1.ApiTags('user'),
     common_1.Controller('auth'),

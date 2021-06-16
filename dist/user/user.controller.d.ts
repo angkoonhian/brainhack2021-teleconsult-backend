@@ -16,4 +16,5 @@ export declare class userController {
     }>;
     getPushToken(pushTokenDTO: pushTokenDTO): Promise<import("../schemas/user.schema").Iuser>;
     getOneUserName(userId: string): Promise<string>;
+    getAllUsers(): Promise<import("../schemas/user.schema").Iuser[]>;
 }

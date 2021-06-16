@@ -50,6 +50,15 @@ let authService = class authService {
             throw err;
         }
     }
+    async getAllUsers() {
+        try {
+            const users = await user_schema_1.default.find();
+            return users;
+        }
+        catch (err) {
+            throw err;
+        }
+    }
     async getOneUserName(userId) {
         try {
             const user = await user_schema_1.default.findOne({ _id: userId });

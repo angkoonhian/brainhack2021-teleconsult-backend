@@ -44,4 +44,9 @@ export class userController {
   getOneUserName(@Param('userId') userId: string) {
     return this.AuthService.getOneUserName(userId)
   }
+
+  @Get('getAllUsers')
+  getAllUsers() {
+    return this.AuthService.getAllUsers()
+  }
 }
