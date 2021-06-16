@@ -8,3 +8,7 @@ export declare class userDTO {
     password: string;
     phoneNumber: string;
 }
+export declare class pushTokenDTO {
+    pushToken: string;
+    userId: string;
+}

@@ -39,10 +39,10 @@ let authService = class authService {
             tokenExpiration: "30d",
         };
     }
-    async updatePushToken(userId, pushToken) {
+    async updatePushToken(pushTokenDTO) {
         try {
-            const user = await user_schema_1.default.findOne({ _id: userId });
-            user['pushToken'] = pushToken;
+            const user = await user_schema_1.default.findOne({ _id: pushTokenDTO.userId });
+            user['pushToken'] = pushTokenDTO.pushToken;
             user.save();
             return user;
         }

@@ -27,8 +27,8 @@ let userController = class userController {
     Register(userDTO) {
         return this.AuthService.registerService(userDTO);
     }
-    getPushToken(pushToken, userId) {
-        return this.AuthService.updatePushToken(userId, pushToken);
+    getPushToken(pushTokenDTO) {
+        return this.AuthService.updatePushToken(pushTokenDTO);
     }
     getOneUserName(userId) {
         return this.AuthService.getOneUserName(userId);
@@ -51,8 +51,9 @@ __decorate([
 ], userController.prototype, "Register", null);
 __decorate([
     common_1.Post('pushToken'),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [user_model_1.pushTokenDTO]),
     __metadata("design:returntype", void 0)
 ], userController.prototype, "getPushToken", null);
 __decorate([

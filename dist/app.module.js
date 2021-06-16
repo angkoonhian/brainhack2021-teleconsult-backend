@@ -15,6 +15,7 @@ const user_module_1 = require("./user/user.module");
 const Joi = require("joi");
 const appointment_module_1 = require("./appointments/appointment.module");
 const clinic_module_1 = require("./clinic/clinic.module");
+const notifications_module_1 = require("./notifications/notifications.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -33,6 +34,7 @@ AppModule = __decorate([
             user_module_1.UserModule,
             appointment_module_1.AppointmentModule,
             clinic_module_1.ClinicModule,
+            notifications_module_1.NotificationsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

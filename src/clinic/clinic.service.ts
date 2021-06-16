@@ -33,10 +33,10 @@ export class clinicService {
     };
   }
 
-  public async updatePushToken(userId, pushToken) {
+  public async updatePushToken(pushTokenDTO) {
     try {
-      const clinic = await Clinic.findOne({_id: userId})
-      clinic['pushToken'] = pushToken
+      const clinic = await Clinic.findOne({_id: pushTokenDTO.clinicId})
+      clinic['pushToken'] = pushTokenDTO.pushToken
       clinic.save()
       return clinic
     } catch (err) {

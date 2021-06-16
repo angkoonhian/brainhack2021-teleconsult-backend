@@ -13,7 +13,7 @@ import {
     ApiTags,
   } from '@nestjs/swagger';
   import clinicService from './clinic.service';
-  import { clinicLoginDTO, clinicDTO } from './model/clinic.model';
+  import { clinicLoginDTO, clinicDTO, pushTokenDTO } from './model/clinic.model';
   
   @ApiTags('clinic')
   @Controller('authClinic')
@@ -37,8 +37,8 @@ import {
     }
 
     @Post('pushToken')
-    getPushToken(pushToken: string, clinicId: string)  {
-        return this.clinicService.updatePushToken(clinicId, pushToken)
+    getPushToken(@Body() pushTokenDTO: pushTokenDTO)  {
+        return this.clinicService.updatePushToken(pushTokenDTO)
     }
 
     @Get('allClinics')

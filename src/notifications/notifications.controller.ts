@@ -17,7 +17,7 @@ import {
   
   @ApiTags('notifications')
   @Controller('notifications')
-  export class userController {
+  export class notificationsController {
     constructor(private readonly notificationsService: notificationsService) {}
   
     @Post('pushNotifications')

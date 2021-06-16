@@ -5,7 +5,7 @@ export declare class clinicService {
         token: any;
         tokenExpiration: string;
     }>;
-    updatePushToken(userId: any, pushToken: any): Promise<import("../schemas/clinic.schema").Iclinic>;
+    updatePushToken(pushTokenDTO: any): Promise<import("../schemas/clinic.schema").Iclinic>;
     getOneClinicDoctors(clinicId: any): Promise<[string]>;
     registerService(userDTO: any): Promise<{
         username: any;

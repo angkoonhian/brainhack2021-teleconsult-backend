@@ -12,35 +12,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotificationsService = void 0;
 const common_1 = require("@nestjs/common");
 const clinic_schema_1 = require("../schemas/clinic.schema");
-const expo_server_sdk_1 = require("expo-server-sdk");
+const axios_1 = require("axios");
 let NotificationsService = class NotificationsService {
-    constructor() {
-        this.expo = new expo_server_sdk_1.Expo({ accessToken: "asdasds" });
-    }
+    constructor() { }
     async pushNotifications(notificationsDTO) {
-        let messages = [];
-        if (!expo_server_sdk_1.Expo.isExpoPushToken(notificationsDTO.pushToken)) {
-            console.error(`Push token is not a valid Expo push token`);
-            return;
-        }
-        messages.push({
+        await axios_1.default.post("https://exp.host/--/api/v2/push/send", {
             to: notificationsDTO.pushToken,
-            sound: 'default',
-            body: 'test notifications',
-            data: { withSome: 'data' }
+            title: notificationsDTO.title,
+            body: notificationsDTO.body
+        }, {
+            headers: {
+                'host': 'exp.host',
+                'accept': 'application/json',
+                'accept-encoding': 'gzip, deflate',
+                'content-type': 'application/json'
+            }
+        }).then(response => {
+            console.log(response);
         });
-        let chunks = this.expo.chunkPushNotifications(messages);
-        let tickets = [];
-        for (let chunk of chunks) {
-            try {
-                let ticketChunk = await this.expo.sendPushNotificationsAsync(chunk);
-                console.log(ticketChunk);
-                tickets.push(...ticketChunk);
-            }
-            catch (err) {
-                throw err;
-            }
-        }
     }
 };
 NotificationsService = __decorate([

@@ -28,8 +28,8 @@ let clinicController = class clinicController {
         console.log("asd");
         return this.clinicService.registerService(clinicDTO);
     }
-    getPushToken(pushToken, clinicId) {
-        return this.clinicService.updatePushToken(clinicId, pushToken);
+    getPushToken(pushTokenDTO) {
+        return this.clinicService.updatePushToken(pushTokenDTO);
     }
     getAllClinics() {
         return this.clinicService.getAllClinicsService();
@@ -59,8 +59,9 @@ __decorate([
 ], clinicController.prototype, "Register", null);
 __decorate([
     common_1.Post('pushToken'),
+    __param(0, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:paramtypes", [clinic_model_1.pushTokenDTO]),
     __metadata("design:returntype", void 0)
 ], clinicController.prototype, "getPushToken", null);
 __decorate([

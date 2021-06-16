@@ -12,12 +12,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userController = void 0;
+exports.notificationsController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const notifications_service_1 = require("./notifications.service");
 const notifications_model_1 = require("./model/notifications.model");
-let userController = class userController {
+let notificationsController = class notificationsController {
     constructor(notificationsService) {
         this.notificationsService = notificationsService;
     }
@@ -31,11 +31,11 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [notifications_model_1.notificationsDTO]),
     __metadata("design:returntype", void 0)
-], userController.prototype, "Register", null);
-userController = __decorate([
+], notificationsController.prototype, "Register", null);
+notificationsController = __decorate([
     swagger_1.ApiTags('notifications'),
     common_1.Controller('notifications'),
     __metadata("design:paramtypes", [notifications_service_1.default])
-], userController);
-exports.userController = userController;
+], notificationsController);
+exports.notificationsController = notificationsController;
 //# sourceMappingURL=notifications.controller.js.map

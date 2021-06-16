@@ -10,3 +10,7 @@ export declare class clinicDTO {
     address: string;
     doctors: [string];
 }
+export declare class pushTokenDTO {
+    pushToken: string;
+    clinicId: string;
+}

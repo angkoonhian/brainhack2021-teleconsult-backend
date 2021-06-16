@@ -11,3 +11,8 @@ export class clinicDTO {
     address: string;
     doctors: [string]
 }
+
+export class pushTokenDTO {
+    pushToken: string;
+    clinicId: string;
+}

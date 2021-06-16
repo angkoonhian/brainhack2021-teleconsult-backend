@@ -1,5 +1,5 @@
 import authService from './auth.service';
-import { userDTO } from './model/user.model';
+import { userDTO, pushTokenDTO } from './model/user.model';
 export declare class userController {
     private readonly AuthService;
     constructor(AuthService: authService);
@@ -14,6 +14,6 @@ export declare class userController {
         email: any;
         phoneNumber: any;
     }>;
-    getPushToken(pushToken: string, userId: string): Promise<import("../schemas/user.schema").Iuser>;
+    getPushToken(pushTokenDTO: pushTokenDTO): Promise<import("../schemas/user.schema").Iuser>;
     getOneUserName(userId: string): Promise<string>;
 }

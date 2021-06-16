@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import * as Joi from 'joi';
 import { AppointmentModule } from './appointments/appointment.module';
 import { ClinicModule } from './clinic/clinic.module';
+import { NotificationsModule} from './notifications/notifications.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ClinicModule } from './clinic/clinic.module';
     UserModule,
     AppointmentModule,
     ClinicModule,
+    NotificationsModule
   ],
   controllers: [AppController],
   providers: [AppService],

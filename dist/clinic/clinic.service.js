@@ -37,10 +37,10 @@ let clinicService = class clinicService {
             tokenExpiration: "30d",
         };
     }
-    async updatePushToken(userId, pushToken) {
+    async updatePushToken(pushTokenDTO) {
         try {
-            const clinic = await clinic_schema_1.default.findOne({ _id: userId });
-            clinic['pushToken'] = pushToken;
+            const clinic = await clinic_schema_1.default.findOne({ _id: pushTokenDTO.clinicId });
+            clinic['pushToken'] = pushTokenDTO.pushToken;
             clinic.save();
             return clinic;
         }
