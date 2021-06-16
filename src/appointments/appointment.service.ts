@@ -72,7 +72,7 @@ export class AppointmentService {
                 // Delete appointment
                 await Appointment.deleteOne({_id: appointmentId});
             } else {
-                await Appointment.updateOne({_id: appointmentId}, {patientRemove: true})
+                await Appointment.updateOne({_id: appointmentId}, {patientRemove: true, patientId: ""})
             }
             // Delete appt from patient
             await User.updateOne(
@@ -93,7 +93,7 @@ export class AppointmentService {
                 // Delete appointment
                 await Appointment.deleteOne({_id: appointmentId});
             } else {
-                await Appointment.updateOne({_id: appointmentId}, {clinicRemove: true})
+                await Appointment.updateOne({_id: appointmentId}, {clinicRemove: true, clinicId: ""})
             }
             // Delete appt from clinic
             await Clinic.updateOne(

@@ -12,6 +12,7 @@ export declare class appointmentController {
         time: any;
         content: any;
         doctorsName: any;
+        consultType: any;
         readStatus: boolean;
         status: string;
         patientRemoved: boolean;

@@ -43,6 +43,7 @@ let AppointmentService = class AppointmentService {
                 time: appointment.time,
                 content: appointment.content,
                 doctorsName: appointment.doctorsName,
+                consultType: appointment.consultType,
                 readStatus: false,
                 status: 'Upcoming',
                 patientRemoved: false,
@@ -73,7 +74,7 @@ let AppointmentService = class AppointmentService {
                 await appointment_schema_1.default.deleteOne({ _id: appointmentId });
             }
             else {
-                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { patientRemove: true });
+                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { patientRemove: true, patientId: "" });
             }
             await user_schema_1.default.updateOne({ _id: deletedAppt.patientId.toString() }, { $pullAll: { appointments: [appointmentId] } });
             return deletedAppt;
@@ -89,7 +90,7 @@ let AppointmentService = class AppointmentService {
                 await appointment_schema_1.default.deleteOne({ _id: appointmentId });
             }
             else {
-                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { clinicRemove: true });
+                await appointment_schema_1.default.updateOne({ _id: appointmentId }, { clinicRemove: true, clinicId: "" });
             }
             await clinic_schema_1.default.updateOne({ _id: deletedAppt.clinicId.toString() }, { $pullAll: { appointments: [appointmentId] } });
             return deletedAppt;

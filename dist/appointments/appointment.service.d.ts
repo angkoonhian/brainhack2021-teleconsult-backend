@@ -9,6 +9,7 @@ export declare class AppointmentService {
         time: any;
         content: any;
         doctorsName: any;
+        consultType: any;
         readStatus: boolean;
         status: string;
         patientRemoved: boolean;
