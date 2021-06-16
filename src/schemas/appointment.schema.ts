@@ -45,6 +45,10 @@ export const AppointmentSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
+    consultType: {
+        type: String,
+        required: true
+    },
     status: {
         type: String,
         required: true,

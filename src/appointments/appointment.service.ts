@@ -37,6 +37,7 @@ export class AppointmentService {
                 time: appointment.time,
                 content: appointment.content,
                 doctorsName: appointment.doctorsName,
+                consultType: appointment.consultType,
                 readStatus: false,
                 status: 'Upcoming',
                 patientRemoved: false,
