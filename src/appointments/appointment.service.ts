@@ -76,7 +76,7 @@ export class AppointmentService {
                 // Delete appointment
                 await Appointment.deleteOne({_id: appointmentId});
             } else {
-                await Appointment.updateOne({_id: appointmentId}, {patientRemove: true, patientId: null})
+                await Appointment.updateOne({_id: appointmentId}, {patientRemoved: true, patientId: null})
             }
             if (deletedAppt.patientId === null) {
                 return;
@@ -101,7 +101,7 @@ export class AppointmentService {
                 // Delete appointment
                 await Appointment.deleteOne({_id: appointmentId});
             } else {
-                await Appointment.updateOne({_id: appointmentId}, {clinicRemove: true, clinicId: null})
+                await Appointment.updateOne({_id: appointmentId}, {clinicRemoved: true, clinicId: null})
             }
             if (deletedAppt.clinicId === null) {
                 return;
