@@ -8,6 +8,7 @@ export declare class AppointmentService {
         date: any;
         time: any;
         content: any;
+        doctorsName: any;
         readStatus: boolean;
         status: string;
         patientRemoved: boolean;

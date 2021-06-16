@@ -5,6 +5,8 @@ export declare class authService {
         token: any;
         tokenExpiration: string;
     }>;
+    updatePushToken(userId: any, pushToken: any): Promise<import("../schemas/user.schema").Iuser>;
+    getOneUserName(userId: any): Promise<string>;
     registerService(userDTO: any): Promise<{
         username: any;
         password: any;

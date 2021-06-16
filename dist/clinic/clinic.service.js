@@ -37,6 +37,26 @@ let clinicService = class clinicService {
             tokenExpiration: "30d",
         };
     }
+    async updatePushToken(userId, pushToken) {
+        try {
+            const clinic = await clinic_schema_1.default.findOne({ _id: userId });
+            clinic['pushToken'] = pushToken;
+            clinic.save();
+            return clinic;
+        }
+        catch (err) {
+            throw err;
+        }
+    }
+    async getOneClinicDoctors(clinicId) {
+        try {
+            const clinic = await clinic_schema_1.default.findOne({ _id: clinicId });
+            return clinic.doctors;
+        }
+        catch (err) {
+            throw err;
+        }
+    }
     async registerService(userDTO) {
         console.log("hgell");
         console.log(userDTO);
@@ -65,7 +85,7 @@ let clinicService = class clinicService {
             return allClinics;
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     }
     async getOneClinicService(clinidId) {
@@ -75,7 +95,7 @@ let clinicService = class clinicService {
             return clinic;
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     }
     getSignedJwtToken(loginUser) {

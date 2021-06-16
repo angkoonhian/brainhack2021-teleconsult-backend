@@ -14,7 +14,7 @@ export class AppointmentService {
             const appointments = await Appointment.find({patientId: patientId});
             return appointments
         } catch (err) {
-            console.log(err);
+            throw err
         }
     }
 
@@ -23,9 +23,10 @@ export class AppointmentService {
             const appointments = await Appointment.find({clinicId: clinicId});
             return appointments
         } catch (err) {
-            console.log(err);
+            throw err
         }
     }
+
 
     public async createNewAppointment(appointment) {
         try {
@@ -35,6 +36,7 @@ export class AppointmentService {
                 date: appointment.date,
                 time: appointment.time,
                 content: appointment.content,
+                doctorsName: appointment.doctorsName,
                 readStatus: false,
                 status: 'Upcoming',
                 patientRemoved: false,
@@ -57,7 +59,7 @@ export class AppointmentService {
             })
             return newAppointment
         } catch (err) {
-            console.log(err)
+            throw err
         }
     }
 
@@ -78,7 +80,7 @@ export class AppointmentService {
             )
             return deletedAppt
         } catch (err) {
-            console.log(err)
+            throw err
         }
     }
 
@@ -99,7 +101,7 @@ export class AppointmentService {
             )
             return deletedAppt
         } catch (err) {
-            console.log(err)
+            throw err
         }
     }
 }

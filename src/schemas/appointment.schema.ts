@@ -33,6 +33,10 @@ export const AppointmentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    doctorsName: {
+        type: String,
+        required: true,
+    },
     content: {
         type: String,
         required: true,

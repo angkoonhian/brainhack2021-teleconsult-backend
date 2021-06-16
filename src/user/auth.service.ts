@@ -33,6 +33,26 @@ export class authService {
     };
   }
 
+  public async updatePushToken(userId, pushToken) {
+    try {
+      const user = await User.findOne({_id: userId})
+      user['pushToken'] = pushToken
+      user.save()
+      return user
+    } catch (err) {
+      throw err
+    }
+  }
+
+  public async getOneUserName(userId) {
+    try {
+      const user = await User.findOne({_id: userId})
+      return user.username
+    } catch (err) {
+      throw err
+    }
+  }
+
   public async registerService(userDTO) {
     console.log(userDTO)
     const registerUser = await User.findOne({

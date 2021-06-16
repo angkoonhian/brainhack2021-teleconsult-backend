@@ -7,6 +7,7 @@ export interface Iclinic extends mongoose.Document {
     email: string;
     phoneNumber: string;
     address: string;
+    doctors: [string];
     appointments: [string];
     notifications: [string];
 }
@@ -34,6 +35,12 @@ export const ClinicSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    doctors: [
+        {
+            type: String,
+            required: true
+        }
+    ],
     appointments: [
         {
             type: Schema.Types.ObjectId,

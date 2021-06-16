@@ -9,4 +9,5 @@ export class clinicDTO {
     password: string;
     phoneNumber: string;
     address: string;
+    doctors: [string]
 }

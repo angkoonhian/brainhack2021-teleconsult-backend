@@ -28,12 +28,18 @@ let clinicController = class clinicController {
         console.log("asd");
         return this.clinicService.registerService(clinicDTO);
     }
+    getPushToken(pushToken, clinicId) {
+        return this.clinicService.updatePushToken(clinicId, pushToken);
+    }
     getAllClinics() {
         return this.clinicService.getAllClinicsService();
     }
     getOneClinic(clinicId) {
         console.log(clinicId);
         return this.clinicService.getOneClinicService(clinicId);
+    }
+    getOneClinicDoctors(clinicId) {
+        return this.clinicService.getOneClinicDoctors(clinicId);
     }
 };
 __decorate([
@@ -52,6 +58,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], clinicController.prototype, "Register", null);
 __decorate([
+    common_1.Post('pushToken'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], clinicController.prototype, "getPushToken", null);
+__decorate([
     common_1.Get('allClinics'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -64,6 +76,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], clinicController.prototype, "getOneClinic", null);
+__decorate([
+    common_1.Get('clinicDoctors/:clinicId'),
+    __param(0, common_1.Param('clinicId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], clinicController.prototype, "getOneClinicDoctors", null);
 clinicController = __decorate([
     swagger_1.ApiTags('clinic'),
     common_1.Controller('authClinic'),

@@ -16,6 +16,8 @@ export declare class clinicController {
         address: any;
         appointments: any[];
     }>;
+    getPushToken(pushToken: string, clinicId: string): Promise<import("../schemas/clinic.schema").Iclinic>;
     getAllClinics(): Promise<import("../schemas/clinic.schema").Iclinic[]>;
     getOneClinic(clinicId: string): Promise<import("../schemas/clinic.schema").Iclinic>;
+    getOneClinicDoctors(clinicId: string): Promise<[string]>;
 }

@@ -27,6 +27,12 @@ let userController = class userController {
     Register(userDTO) {
         return this.AuthService.registerService(userDTO);
     }
+    getPushToken(pushToken, userId) {
+        return this.AuthService.updatePushToken(userId, pushToken);
+    }
+    getOneUserName(userId) {
+        return this.AuthService.getOneUserName(userId);
+    }
 };
 __decorate([
     common_1.Get('login/:username/:password'),
@@ -43,6 +49,19 @@ __decorate([
     __metadata("design:paramtypes", [user_model_1.userDTO]),
     __metadata("design:returntype", void 0)
 ], userController.prototype, "Register", null);
+__decorate([
+    common_1.Post('pushToken'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], userController.prototype, "getPushToken", null);
+__decorate([
+    common_1.Get('getOneUserName/:userId'),
+    __param(0, common_1.Param('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], userController.prototype, "getOneUserName", null);
 userController = __decorate([
     swagger_1.ApiTags('user'),
     common_1.Controller('auth'),

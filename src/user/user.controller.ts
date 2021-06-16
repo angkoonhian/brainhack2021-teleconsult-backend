@@ -34,4 +34,14 @@ export class userController {
   ) {
       return this.AuthService.registerService(userDTO)
   }
+
+  @Post('pushToken')
+  getPushToken(pushToken: string, userId: string)  {
+    return this.AuthService.updatePushToken(userId, pushToken)
+  }
+
+  @Get('getOneUserName/:userId')
+  getOneUserName(@Param('userId') userId: string) {
+    return this.AuthService.getOneUserName(userId)
+  }
 }

@@ -14,4 +14,6 @@ export declare class userController {
         email: any;
         phoneNumber: any;
     }>;
+    getPushToken(pushToken: string, userId: string): Promise<import("../schemas/user.schema").Iuser>;
+    getOneUserName(userId: string): Promise<string>;
 }

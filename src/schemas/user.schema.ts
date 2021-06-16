@@ -39,7 +39,10 @@ export const UserSchema = new mongoose.Schema({
             type: Schema.Types.ObjectId,
             ref: 'notifications'
         }
-    ]
+    ],
+    pushToken: {
+        type: String,
+    }
   });
 
   const User = mongoose.model<Iuser>('users', UserSchema);

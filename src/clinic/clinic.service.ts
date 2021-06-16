@@ -33,6 +33,26 @@ export class clinicService {
     };
   }
 
+  public async updatePushToken(userId, pushToken) {
+    try {
+      const clinic = await Clinic.findOne({_id: userId})
+      clinic['pushToken'] = pushToken
+      clinic.save()
+      return clinic
+    } catch (err) {
+      throw err
+    }
+  }
+
+  public async getOneClinicDoctors(clinicId) {
+    try {
+      const clinic = await Clinic.findOne({_id:clinicId})
+      return clinic.doctors
+    } catch (err) {
+      throw err
+    }
+  }
+
   public async registerService(userDTO) {
     console.log("hgell")
     console.log(userDTO)
@@ -64,7 +84,7 @@ export class clinicService {
       console.log(allClinics)
       return allClinics
     } catch (err) {
-      console.log(err)
+      throw err
     }
   }
 
@@ -74,7 +94,7 @@ export class clinicService {
       console.log(clinic)
       return clinic
     } catch (err) {
-      console.log(err)
+      throw err
     }
   }
 

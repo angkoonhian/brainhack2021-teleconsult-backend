@@ -8,4 +8,5 @@ export declare class clinicDTO {
     password: string;
     phoneNumber: string;
     address: string;
+    doctors: [string];
 }

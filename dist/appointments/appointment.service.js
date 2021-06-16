@@ -22,7 +22,7 @@ let AppointmentService = class AppointmentService {
             return appointments;
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     }
     async getClinicAppointment(clinicId) {
@@ -31,7 +31,7 @@ let AppointmentService = class AppointmentService {
             return appointments;
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     }
     async createNewAppointment(appointment) {
@@ -42,6 +42,7 @@ let AppointmentService = class AppointmentService {
                 date: appointment.date,
                 time: appointment.time,
                 content: appointment.content,
+                doctorsName: appointment.doctorsName,
                 readStatus: false,
                 status: 'Upcoming',
                 patientRemoved: false,
@@ -62,7 +63,7 @@ let AppointmentService = class AppointmentService {
             return newAppointment;
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     }
     async deletePatientAppointment(appointmentId) {
@@ -78,7 +79,7 @@ let AppointmentService = class AppointmentService {
             return deletedAppt;
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     }
     async deleteClinicAppointment(appointmentId) {
@@ -94,7 +95,7 @@ let AppointmentService = class AppointmentService {
             return deletedAppt;
         }
         catch (err) {
-            console.log(err);
+            throw err;
         }
     }
 };

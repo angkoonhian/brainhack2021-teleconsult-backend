@@ -36,6 +36,11 @@ import {
         return this.clinicService.registerService(clinicDTO)
     }
 
+    @Post('pushToken')
+    getPushToken(pushToken: string, clinicId: string)  {
+        return this.clinicService.updatePushToken(clinicId, pushToken)
+    }
+
     @Get('allClinics')
     getAllClinics() {
         return this.clinicService.getAllClinicsService();
@@ -47,6 +52,13 @@ import {
     ) {
         console.log(clinicId)
         return this.clinicService.getOneClinicService(clinicId)
+    }
+
+    @Get('clinicDoctors/:clinicId')
+    getOneClinicDoctors(
+      @Param('clinicId') clinicId: string
+    ) {
+      return this.clinicService.getOneClinicDoctors(clinicId)
     }
   }
   
