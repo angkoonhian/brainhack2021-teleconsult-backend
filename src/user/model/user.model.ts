@@ -9,3 +9,8 @@ export class userDTO {
     password: string;
     phoneNumber: string;
 }
+
+export class pushTokenDTO {
+    pushToken: string;
+    userId: string;
+}

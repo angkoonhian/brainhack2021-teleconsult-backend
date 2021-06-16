@@ -13,7 +13,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import authService from './auth.service';
-import { userLoginDTO, userDTO } from './model/user.model';
+import { userLoginDTO, userDTO, pushTokenDTO, pushTokenDTO } from './model/user.model';
 
 @ApiTags('user')
 @Controller('auth')
@@ -36,8 +36,8 @@ export class userController {
   }
 
   @Post('pushToken')
-  getPushToken(pushToken: string, userId: string)  {
-    return this.AuthService.updatePushToken(userId, pushToken)
+  getPushToken(@Body() pushTokenDTO: pushTokenDTO)  {
+    return this.AuthService.updatePushToken(pushTokenDTO)
   }
 
   @Get('getOneUserName/:userId')

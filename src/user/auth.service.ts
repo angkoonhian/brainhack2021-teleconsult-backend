@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import { sign } from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
 import User from '../schemas/user.schema';
-import { userLoginDTO } from './model/user.model';
+import { pushTokenDTO, userLoginDTO } from './model/user.model';
 
 @Injectable()
 export class authService {
@@ -33,10 +33,10 @@ export class authService {
     };
   }
 
-  public async updatePushToken(userId, pushToken) {
+  public async updatePushToken(pushTokenDTO) {
     try {
-      const user = await User.findOne({_id: userId})
-      user['pushToken'] = pushToken
+      const user = await User.findOne({_id: pushTokenDTO.userId})
+      user['pushToken'] = pushTokenDTO.pushToken
       user.save()
       return user
     } catch (err) {
