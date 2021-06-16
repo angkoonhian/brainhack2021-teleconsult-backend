@@ -19,7 +19,7 @@ let clinicService = class clinicService {
     async loginService(username, password) {
         console.log(username);
         const loginUser = await clinic_schema_1.default.findOne({
-            username: username,
+            clinicName: username,
         });
         console.log(username);
         if (!loginUser) {

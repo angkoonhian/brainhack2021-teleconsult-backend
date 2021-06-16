@@ -11,7 +11,7 @@ export class clinicService {
   public async loginService(username, password) {
     console.log(username)
     const loginUser = await Clinic.findOne({
-      username: username,
+      clinicName: username,
     });
     console.log(username)
     if (!loginUser) {
